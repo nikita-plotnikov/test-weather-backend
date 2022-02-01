@@ -1,0 +1,20 @@
+service: aws-lambda-typescript-weather-app
+
+plugins:
+  - serverless-plugin-typescript
+  - serverless-dotenv-plugin
+  - serverless-offline
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+  stage: dev
+  region: eu-west-2
+
+functions:
+  getWeather:
+    handler: src/getWeather.handler
+    events:
+      - http:
+          path: /weather/{city}/current
+          method: get
