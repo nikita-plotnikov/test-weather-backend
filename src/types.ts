@@ -10,6 +10,10 @@ export type HttpResponseBody = {
     city: string;
     temperature: number;
     textWeather: string[];
+    windSpeed: number;
+    windDir: string;
+    pressure: number;
+    humidity: number;
 }
 
 export type WeatherstackSuccessResponse = {
@@ -30,7 +34,9 @@ export type WeatherstackSuccessResponse = {
         temperature: number;
         weather_descriptions: string[];
         wind_speed: number;
+        wind_dir: string;
         pressure: number;
+        humidity: number;
     };
 };
 

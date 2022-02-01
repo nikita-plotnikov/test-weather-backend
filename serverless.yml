@@ -16,5 +16,5 @@ functions:
     handler: src/getWeather.handler
     events:
       - http:
-          path: /weather/{city}/current
+          path: /weather/{city}
           method: get

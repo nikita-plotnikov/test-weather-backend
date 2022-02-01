@@ -179,7 +179,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/aws-lambda-typescript-weather-app/dev/1643725736802-2022-02-01T14:28:56.802Z/aws-lambda-typescript-weather-app.zip"
+                "S3Key": "serverless/aws-lambda-typescript-weather-app/dev/1643729016260-2022-02-01T15:23:36.260Z/aws-lambda-typescript-weather-app.zip"
               },
               "Handler": "src/getWeather.handler",
               "Runtime": "nodejs12.x",
@@ -205,14 +205,14 @@
               "GetWeatherLogGroup"
             ]
           },
-          "GetWeatherLambdaVersionkJK9YJ9cKqoyQGknQ9a3VDtVMWgWh6zhjZBX1Ceesc": {
+          "GetWeatherLambdaVersion4VkXxe1YNTyRsenDSYctdhExzihPq5UrIl5JHnSgE": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "GetWeatherLambdaFunction"
               },
-              "CodeSha256": "rfiWO/9lL1RE1LDzpcfi8pckEoHvM7MoYJmCQYtbB6E="
+              "CodeSha256": "PWWYslYXG0eoZH+8XryL8mQrQkPcp+xzfYSTC6vKxQ8="
             }
           },
           "ApiGatewayRestApi": {
@@ -254,25 +254,13 @@
               }
             }
           },
-          "ApiGatewayResourceWeatherCityVarCurrent": {
-            "Type": "AWS::ApiGateway::Resource",
-            "Properties": {
-              "ParentId": {
-                "Ref": "ApiGatewayResourceWeatherCityVar"
-              },
-              "PathPart": "current",
-              "RestApiId": {
-                "Ref": "ApiGatewayRestApi"
-              }
-            }
-          },
-          "ApiGatewayMethodWeatherCityVarCurrentGet": {
+          "ApiGatewayMethodWeatherCityVarGet": {
             "Type": "AWS::ApiGateway::Method",
             "Properties": {
               "HttpMethod": "GET",
               "RequestParameters": {},
               "ResourceId": {
-                "Ref": "ApiGatewayResourceWeatherCityVarCurrent"
+                "Ref": "ApiGatewayResourceWeatherCityVar"
               },
               "RestApiId": {
                 "Ref": "ApiGatewayRestApi"
@@ -312,7 +300,7 @@
               "GetWeatherLambdaPermissionApiGateway"
             ]
           },
-          "ApiGatewayDeployment1643725719415": {
+          "ApiGatewayDeployment1643729000946": {
             "Type": "AWS::ApiGateway::Deployment",
             "Properties": {
               "RestApiId": {
@@ -321,7 +309,7 @@
               "StageName": "dev"
             },
             "DependsOn": [
-              "ApiGatewayMethodWeatherCityVarCurrentGet"
+              "ApiGatewayMethodWeatherCityVarGet"
             ]
           },
           "GetWeatherLambdaPermissionApiGateway": {
@@ -374,7 +362,7 @@
           "GetWeatherLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "GetWeatherLambdaVersionkJK9YJ9cKqoyQGknQ9a3VDtVMWgWh6zhjZBX1Ceesc"
+              "Ref": "GetWeatherLambdaVersion4VkXxe1YNTyRsenDSYctdhExzihPq5UrIl5JHnSgE"
             },
             "Export": {
               "Name": "sls-aws-lambda-typescript-weather-app-dev-GetWeatherLambdaFunctionQualifiedArn"
@@ -504,7 +492,7 @@
         "events": [
           {
             "http": {
-              "path": "weather/{city}/current",
+              "path": "weather/{city}",
               "method": "get",
               "integration": "AWS_PROXY"
             }
@@ -522,7 +510,7 @@
         "timeout": 6,
         "runtime": "nodejs12.x",
         "vpc": {},
-        "versionLogicalId": "GetWeatherLambdaVersionkJK9YJ9cKqoyQGknQ9a3VDtVMWgWh6zhjZBX1Ceesc"
+        "versionLogicalId": "GetWeatherLambdaVersion4VkXxe1YNTyRsenDSYctdhExzihPq5UrIl5JHnSgE"
       }
     },
     "configValidationMode": "warn",
@@ -544,7 +532,7 @@
     "artifact": "/Users/nikitaplotnikov/WebstormProjects/test-backend/.build/.serverless/aws-lambda-typescript-weather-app.zip"
   },
   "package": {
-    "artifactDirectoryName": "serverless/aws-lambda-typescript-weather-app/dev/1643725736802-2022-02-01T14:28:56.802Z",
+    "artifactDirectoryName": "serverless/aws-lambda-typescript-weather-app/dev/1643729016260-2022-02-01T15:23:36.260Z",
     "artifact": "aws-lambda-typescript-weather-app.zip"
   }
 }

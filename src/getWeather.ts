@@ -6,8 +6,6 @@ import { promisify } from 'util';
 
 const redisUrl = process.env.REDIS_URL;
 
-const API_KEY = process.env.WEATHERSTACK_API_KEY;
-
 export function respondJson(body: object, statusCode: number) {
     return {
         statusCode,
@@ -27,8 +25,7 @@ export async function handler(event: HttpEventRequest<{ city: string }>): HttpRe
         const formatCached: HttpResponseBody = JSON.parse(cachedCity);
         return respondJson(formatCached, 200);
     }
-    const endpoint = 'http://api.weatherstack.com/current';
-    console.log('secret', secret)
+    const endpoint = process.env.API_URL!;
     const { data } = await axios.get<WeatherstackResponse>(endpoint, {
         params: { access_key: secret, query: city }
     });
@@ -36,11 +33,14 @@ export async function handler(event: HttpEventRequest<{ city: string }>): HttpRe
     if ('error' in data) {
         return respondJson({ error: true }, 200);
     }
-
     const response: HttpResponseBody = {
         city: data.location.name,
         temperature: data.current.temperature,
         textWeather: data.current.weather_descriptions,
+        windSpeed: data.current.wind_speed,
+        windDir: data.current.wind_dir,
+        pressure: data.current.pressure,
+        humidity: data.current.humidity,
     }
 
     await setAsync(`${city}`, JSON.stringify(response))
